@@ -1,6 +1,6 @@
 import React from 'react';
-import { Head, useForm, usePage } from '@inertiajs/react';
-import AuthenticatedLayout from '@/layouts/auth-layout';
+import { Head, useForm} from '@inertiajs/react';
+
 import { Input } from '@/components/ui/input';
 import { Category } from '@/types/Category';
 import { Button } from '@/components/ui/button';
@@ -13,7 +13,7 @@ interface CreateTaskProps extends SharedData {
   categories: Category[];
 }
 
-export default function Create({ auth, categories }: CreateTaskProps) {
+export default function Create({ categories }: CreateTaskProps) {
   const { data, setData, post, processing, errors } = useForm({
     title: '',
     description: '',

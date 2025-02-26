@@ -1,6 +1,6 @@
 import React from 'react';
-import { Head, useForm, usePage } from '@inertiajs/react';
-import AuthenticatedLayout from '@/layouts/auth-layout';
+import { Head, useForm} from '@inertiajs/react';
+
 import { Input } from '@/components/ui/input';
 import { Category } from '@/types/Category';
 import { Button } from '@/components/ui/button';
@@ -9,11 +9,8 @@ import InputError from '@/components/input-error';
 import { Label } from '@/components/ui/label';
 import AppLayout from '@/layouts/app-layout';
 
-interface CreateCategoryProps extends SharedData {
-  categories: Category[];
-}
 
-export default function Create({ categories }: CreateCategoryProps) {
+export default function Create() {
   const { data, setData, post, processing, errors } = useForm({
     name: '',
     color: '#3b82f6', // Default to a blue color
