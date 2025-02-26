@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import { Head, Link, router, usePage } from '@inertiajs/react';
-import { SharedData } from '@/types';
+import { BreadcrumbItem, SharedData } from '@/types';
 import AuthenticatedLayout from '@/layouts/auth-layout';
 import  {Category} from '@/types/Category';
 import { Task } from '@/types/Task';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
+import AppLayout from '@/layouts/app-layout';
 
 interface TasksIndexProps extends SharedData {
   tasks: Task[];
   categories: Category[];
 }
-const { auth } = usePage<SharedData>().props;
+
 
 export default function Index({ tasks, categories }: TasksIndexProps) {
   const [filterStatus, setFilterStatus] = useState<string>('all');
@@ -53,18 +54,21 @@ export default function Index({ tasks, categories }: TasksIndexProps) {
       default: return 'bg-gray-100 text-gray-800';
     }
   };
+  const breadcrumbs: BreadcrumbItem[] = [
 
+      {
+          title: 'Tasks',
+          href: '/tasks',
+      },
+  ];
   return (
-    <AuthenticatedLayout
-      title="Tasks"
-      description="Manage your tasks here."
+    <AppLayout
+      breadcrumbs={breadcrumbs}
     >
-      <Head title="Tasks" />
-
-      <div className="py-12">
-        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+      <div className="py-0 sm:px-6 lg:px-8 ">
+        <div className="">
           <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-            <div className="p-6 bg-white border-b border-gray-200">
+            <div className="p-6 bg-violet-800 border-b border-gray-200">
               <div className="flex justify-between mb-6">
                 <div className="flex space-x-4">
                   <select
@@ -223,6 +227,7 @@ export default function Index({ tasks, categories }: TasksIndexProps) {
           </div>
         </div>
       </div>
-    </AuthenticatedLayout>
+
+    </AppLayout>
   );
 }
