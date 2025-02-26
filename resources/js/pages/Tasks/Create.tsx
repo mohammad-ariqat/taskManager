@@ -4,14 +4,15 @@ import AuthenticatedLayout from '@/layouts/auth-layout';
 import { Input } from '@/components/ui/input';
 import { Category } from '@/types/Category';
 import { Button } from '@/components/ui/button';
-import { SharedData } from '@/types';
+import { BreadcrumbItem, SharedData } from '@/types';
 import InputError from '@/components/input-error';
 import { Label } from '@/components/ui/label';
+import AppLayout from '@/layouts/app-layout';
 
 interface CreateTaskProps extends SharedData {
   categories: Category[];
 }
-const { auth } = usePage<SharedData>().props;
+
 export default function Create({ auth, categories }: CreateTaskProps) {
   const { data, setData, post, processing, errors } = useForm({
     title: '',
@@ -25,18 +26,21 @@ export default function Create({ auth, categories }: CreateTaskProps) {
     e.preventDefault();
     post(route('tasks.store'));
   };
+const breadcrumbs: BreadcrumbItem[] = [
 
+      {
+          title: 'Create Task',
+          href: '/tasks/create',
+      },
+  ];
   return (
-    <AuthenticatedLayout
-      title='Create Task'
-      description="Create a new task and assign it to a category."
-    >
+    <AppLayout breadcrumbs={breadcrumbs}>
       <Head title="Create Task" />
 
       <div className="py-12">
         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-            <div className="p-6 bg-white border-b border-gray-200">
+            <div className="p-6 bg-black border-b border-gray-200">
               <form onSubmit={handleSubmit}>
                 <div className="mb-4">
                   <Label htmlFor="title">Title</Label>
@@ -79,7 +83,7 @@ export default function Create({ auth, categories }: CreateTaskProps) {
                   <Label htmlFor="priority">Priority</Label>
                   <select
                     id="priority"
-                    className="mt-1 block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                    className="bg-black mt-1 block w-full border-white focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
                     value={data.priority}
                     onChange={(e) => setData('priority', e.target.value)}
                   >
@@ -94,7 +98,7 @@ export default function Create({ auth, categories }: CreateTaskProps) {
                   <Label htmlFor="category_id"  >Category</Label>
                   <select
                     id="category_id"
-                    className="mt-1 block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                    className="bg-black mt-1 block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
                     value={data.category_id}
                     onChange={(e) => setData('category_id', e.target.value)}
                   >
@@ -122,6 +126,6 @@ export default function Create({ auth, categories }: CreateTaskProps) {
           </div>
         </div>
       </div>
-    </AuthenticatedLayout>
+    </AppLayout>
   );
 }

@@ -3,10 +3,10 @@ import { Category } from "./Category";
 export interface Task {
     id: number;
     user_id: number;
-    category_id: number | null;
+    category_id: number ;
     title: string;
-    description: string | null;
-    due_date: string | null;
+    description: string;
+    due_date: string ;
     priority: 'low' | 'medium' | 'high';
     status: 'pending' | 'in_progress' | 'completed';
     created_at: string;

@@ -62,9 +62,8 @@ export default function Index({ tasks, categories }: TasksIndexProps) {
       },
   ];
   return (
-    <AppLayout
-      breadcrumbs={breadcrumbs}
-    >
+    <AppLayout breadcrumbs={breadcrumbs}>
+      <Head title="Tasks" />
       <div className="py-0 sm:px-6 lg:px-8 ">
         <div className="">
           <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -72,7 +71,7 @@ export default function Index({ tasks, categories }: TasksIndexProps) {
               <div className="flex justify-between mb-6">
                 <div className="flex space-x-4">
                   <select
-                    className="border-gray-300 rounded-md shadow-sm"
+                    className="bg-violet-600 border-gray-300 rounded-md shadow-sm"
                     value={filterStatus}
                     onChange={(e) => setFilterStatus(e.target.value)}
                   >
@@ -83,7 +82,7 @@ export default function Index({ tasks, categories }: TasksIndexProps) {
                   </select>
 
                   <select
-                    className="border-gray-300 rounded-md shadow-sm"
+                    className="bg-violet-600 border-gray-300 rounded-md shadow-sm"
                     value={filterPriority}
                     onChange={(e) => setFilterPriority(e.target.value)}
                   >
@@ -94,7 +93,7 @@ export default function Index({ tasks, categories }: TasksIndexProps) {
                   </select>
 
                   <select
-                    className="border-gray-300 rounded-md shadow-sm"
+                    className="bg-violet-600 border-gray-300 rounded-md shadow-sm"
                     value={filterCategory}
                     onChange={(e) => setFilterCategory(e.target.value)}
                   >
