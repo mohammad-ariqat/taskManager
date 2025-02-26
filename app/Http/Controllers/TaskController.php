@@ -121,4 +121,12 @@ class TaskController extends Controller
         return redirect()->route('tasks.index')
             ->with('success', 'Task deleted successfully.');
     }
+    public function apiIndex()
+    {
+        $tasks = Task::with('category')->get();
+        
+        return response()->json([
+            'tasks' => $tasks
+        ]);
+    }
 }
